@@ -34,4 +34,4 @@ A directive that enforces case specified for variable specs.
   - hideprefix: Boolean value. If set to "false" will hide the prefix label
   - hidesuffix: Boolean value. If set to "false" will hide the suffix label
 - Example usage
-  - ``` <customcasefield customfield='Variant.Specs.Phone' case='upper'></customcasefield>```
+  - ``` <customcasefield customfield='Variant.Specs.Name' case='upper'></customcasefield>```

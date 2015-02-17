@@ -20,7 +20,7 @@ A directive that allows for masking input for variable specs. The key difference
   - hideprefix: Boolean value. If set to "false" will hide the prefix label
   - hidesuffix: Boolean value. If set to "false" will hide the suffix label
 - Example usage
-  - ``` <ocmaskfield customfield='Variant.Specs.Phone' ocmask='999.999.9999 x999'></ocmaskfield>```
+  - ``` <ocmaskfield customfield='Variant.Specs.Phone' mask='999.999.9999 x999'></ocmaskfield>```
 - Notes
   - The plugin is an angular implementation of the Masked Input plugin for jQuery @ http://digitalbush.com/projects/masked-input-plugin/#license
   

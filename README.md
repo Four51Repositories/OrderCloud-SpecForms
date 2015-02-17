@@ -21,3 +21,17 @@ A directive that allows for masking input for variable specs. The key difference
   - hidesuffix: Boolean value. If set to "false" will hide the suffix label
 - Example usage
   - ``` <custommaskfield customfield='Variant.Specs.Phone' mask='999.999.9999 x999'></custommaskfield>```
+- Notes
+  - The plugin is an angular implementation of the Masked Input plugin for jQuery @ http://digitalbush.com/projects/masked-input-plugin/#license
+  
+## customcasefield
+
+A directive that enforces case specified for variable specs.  
+
+- Properties
+  - customfield: Required property. Specify the variable spec
+  - case: Required property. Specify the case to enforce. Options: 'upper', 'lower'
+  - hideprefix: Boolean value. If set to "false" will hide the prefix label
+  - hidesuffix: Boolean value. If set to "false" will hide the suffix label
+- Example usage
+  - ``` <customcasefield customfield='Variant.Specs.Phone' case='upper'></customcasefield>```

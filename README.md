@@ -36,8 +36,6 @@ A directive that enforces case specified for variable specs.
 - Example usage
   - ``` <occasefield customfield='Variant.Specs.Name' case='upper'></occasefield>```
 
-# Custom directives included in the OrderCloud Storefront reference app
-
 ## octextfield
 
 A directive for generic text input. When the variable spec property contains multiple lines a textarea element is added to the DOM rather than a one line text input control. If the field has a mask value, such as for Custom Order Fields and Custom User Fields, the value will include the mask characters. 

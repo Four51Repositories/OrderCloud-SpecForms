@@ -7,6 +7,10 @@ This is a repository of useful AngularJS directive for OrderCloud 2.0 spec forms
 - Include the file: ordercloud-specforms.js in your repository.  We recommend the "lib" folder, but you can place it anywhere inside the "app" folder you wish. 
 - Reference the new script file in your index.html file. Be careful to identify the path/location correctly.
 - Inject the module into your app.module function. Remember the name of the module is "OrderCloud-SpecForms"
+- If you will be using the CKEDITOR you need to include one more file in your index file like so:
+```html
+<script src="//cdn.ckeditor.com/4.4.7/basic/ckeditor.js" data-group="cdn"></script>
+```
 
 # Directives
 

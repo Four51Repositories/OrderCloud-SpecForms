@@ -7,10 +7,6 @@ This is a repository of useful AngularJS directive for OrderCloud 2.0 spec forms
 - Include the file: ordercloud-specforms.js in your repository.  We recommend the "lib" folder, but you can place it anywhere inside the "app" folder you wish. 
 - Reference the new script file in your index.html file. Be careful to identify the path/location correctly.
 - Inject the module into your app.module function. Remember the name of the module is "OrderCloud-SpecForms"
-- If you will be using the CKEDITOR you need to include one more file in your index file like so:
-```html
-<script src="//cdn.ckeditor.com/4.4.7/basic/ckeditor.js" data-group="cdn"></script>
-```
 
 # Directives
 
@@ -105,3 +101,17 @@ A directive to expose a checkbox control and apply the defined value to the Spec
   
 - Example usage
   - ``` <occheckboxfield customfield='Variant.Specs.Approved' checked='Yes' unchecked='No'></occheckboxfield>```
+
+## octextboxfield
+
+A directive to create a ckeditor on the page and bind it to a model.
+- Properties
+  - ng-model: This is the value you want to bind to.
+
+- Exampe usage
+  - ``` <textarea octextboxfield ng-model="Variant.Specs.AdditionalInformation"></textarea>
+
+- Important Note: if you are using the octextboxfield, in the index file you need to add an extra script:
+```
+<script src="//cdn.ckeditor.com/4.4.7/basic/ckeditor.js" data-group="cdn"></script>
+```

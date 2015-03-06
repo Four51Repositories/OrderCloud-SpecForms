@@ -10,7 +10,7 @@ angular.module('OrderCloud-SpecForms')
     .directive('ocdatefield', ocdatefield)
     .directive('octimefield', octimefield)
     .directive('occheckboxfield', occheckboxfield)
-    .directive('ckEditor', ckEditor)
+    .directive('octextboxfield', octextboxfield)
 ;
 
 function ocmaskfield() {
@@ -431,10 +431,10 @@ function occheckboxfield() {
     }
 }
 
-function ckEditor() {
+function octextboxfield() {
     return {
         restrict: 'A',
-        require: '?ngModel',
+        require: 'ngModel',
         link: function(scope, elm, attr, ngModel) {
             /* Replace whatever element this directive is on with a ck-editor */
             var ck = CKEDITOR.replace(elm[0], {

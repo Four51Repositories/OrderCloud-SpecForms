@@ -10,15 +10,15 @@ This is a repository of useful AngularJS directive for OrderCloud 2.0 spec forms
 
 # Directives
 
-## ocmmaskfield
+## ocmaskfield
 
 A directive that allows for masking input for variable specs. The key difference between this directive and the angular directive "ui-mask" is that the value will include the mask characters. 
 
 - Properties
   - customfield: Required property. Specify the variable spec
   - mask: Required property. Specify the mask signature. Ex: 999-***-aaa
-  - hideprefix: Boolean value. If set to "false" will hide the prefix label
-  - hidesuffix: Boolean value. If set to "false" will hide the suffix label
+  - hideprefix: Boolean value. If set to "true" prefix text will be hidden
+  - hidesuffix: Boolean value. If set to "true" suffix text will be hidden
 - Example usage
   - ``` <ocmaskfield customfield='Variant.Specs.Phone' mask='999.999.9999 x999'></ocmaskfield>```
 - Notes
@@ -31,8 +31,8 @@ A directive that enforces case specified for variable specs.
 - Properties
   - customfield: Required property. Specify the variable spec
   - case: Required property. Specify the case to enforce. Options: 'upper', 'lower'
-  - hideprefix: Boolean value. If set to "false" will hide the prefix label
-  - hidesuffix: Boolean value. If set to "false" will hide the suffix label
+  - hideprefix: Boolean value. If set to "true" prefix text will be hidden
+  - hidesuffix: Boolean value. If set to "true" suffix text will be hidden
 - Example usage
   - ``` <occasefield customfield='Variant.Specs.Name' case='upper'></occasefield>```
 
@@ -42,8 +42,8 @@ A directive for generic text input. When the variable spec property contains mul
 
 - Properties
   - customfield: Required property. Specify the variable spec
-  - hideprefix: Boolean value. If set to "false" will hide the prefix label
-  - hidesuffix: Boolean value. If set to "false" will hide the suffix label
+  - hideprefix: Boolean value. If set to "true" prefix text will be hidden
+  - hidesuffix: Boolean value. If set to "true" suffix text will be hidden
 - Example usage
   - ``` <octextfield customfield='Variant.Specs.Title'></octextfield>```
 
@@ -53,8 +53,8 @@ A directive for select lists. The result is a dropdown control that contain all 
 
 - Properties
   - customfield: Required property. Specify the variable spec
-  - hideprefix: Boolean value. If set to "false" will hide the prefix label
-  - hidesuffix: Boolean value. If set to "false" will hide the suffix label
+  - hideprefix: Boolean value. If set to "true" prefix text will be hidden
+  - hidesuffix: Boolean value. If set to "true" suffix text will be hidden
 - Example usage
   - ``` <ocselectionfield customfield='Variant.Specs.Options'></ocselectionfield>```
 
@@ -73,8 +73,8 @@ A directive to provide a calendar control for date selection. The spec must be a
 
 - Properties
   - customfield: Required property. Specify the variable spec
-  - hideprefix: Boolean value. If set to "false" will hide the prefix label
-  - hidesuffix: Boolean value. If set to "false" will hide the suffix label
+  - hideprefix: Boolean value. If set to "true" prefix text will be hidden
+  - hidesuffix: Boolean value. If set to "true" suffix text will be hidden
   - format: The format for displayed dates. Defaults to 'MM/dd/yyyy'
 - Example usage
   - ``` <ocdatefield customfield='Variant.Specs.StartDate' format='dd-MM-yyyy'></ocdatefield>```
@@ -85,8 +85,8 @@ A directive to utilize the Angular Bootstrap [http://angular-ui.github.io/bootst
 
 - Properties
   - customfield: Required property. Specify the variable spec
-  - hideprefix: Boolean value. If set to "false" will hide the prefix label
-  - hidesuffix: Boolean value. If set to "false" will hide the suffix label
+  - hideprefix: Boolean value. If set to "true" prefix text will be hidden
+  - hidesuffix: Boolean value. If set to "true" suffix text will be hidden
 - Example usage
   - ``` <octimefield customfield='Variant.Specs.StartTime'></octimefield>```
 

@@ -373,10 +373,11 @@ function ocdatefield($filter) {
             '<label ng-class="{\'required\': customfield.Required}">{{customfield.Label || customfield.Name}}</label>',
             '<div ng-class="{\'input-group\':((customfield.Prefix && !hideprefix) || (customfield.Suffix && !hidesuffix))}">',
             '<span class="input-group-addon" ng-if="customfield.Prefix && !hideprefix && !((customfield.Prefix) == \'\')">{{customfield.Prefix}}</span>',
-            '<input datepicker-popup="{{format}}" class="form-control" type="text" ng-required="customfield.Required" placeholder="{{customfield.Value}}" ng-model="customfield.Date"/>',
+            '<input is-open="fieldopened" datepicker-popup="{{format}}" class="form-control" type="text" ng-required="customfield.Required" placeholder="{{customfield.Value}}" ng-model="customfield.Date"/>',
             '<span class="input-group-addon" ng-if="customfield.Suffix && !hidesuffix && !((customfield.Suffix) == \'\')">{{customfield.Suffix}}</span>',
             '<i class="fa fa-calendar"></i>',
             '</div>',
+            '<div class="btn btn-default btn-block btn-date hidden-lg hidden-md" ng-click="$event.preventDefault();$event.stopPropagation();fieldopened = !fieldopened;" style="margin:0; height:40px; padding-top:8px;">{{customfield.Date ? \'\' : \'Tap\'}}<span class="text-info">{{customfield.Date | date: customfield.format}}</span> </div>',
             '</div>'
         ].join('');
     }

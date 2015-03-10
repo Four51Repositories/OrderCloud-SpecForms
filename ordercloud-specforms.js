@@ -30,14 +30,14 @@ function ocmaskfield() {
     function template() {
         return [
             '<div class="view-form-icon" ng-class="{\'view-form-icon-input-group\':((customfield.Prefix && !hideprefix) || (customfield.Suffix && !hidesuffix))}">',
-                '<div ng-if="customfield.Lines <= 1">',
-                    '<label ng-class="{\'required\': customfield.Required}">{{customfield.Label || customfield.Name}}</label>',
-                    '<div ng-class="{\'input-group\':((customfield.Prefix && !hideprefix) || (customfield.Suffix && !hidesuffix))}">',
-                        '<span class="input-group-addon" ng-if="customfield.Prefix && !hideprefix && !((customfield.Prefix) == \'\')">{{customfield.Prefix}}</span>',
-                        '<input class="form-control" size="{{customfield.Width * .13}}" ng-maxlength="{{customfield.MaxLength}}" mask="{{customfield.MaskedInput || mask}}" type="text" autocomplete="off" ng-required="{{customfield.Required}}" ng-model="customfield.Value"></input>',
-                        '<span class="input-group-addon" ng-if="customfield.Suffix && !hidesuffix && !((customfield.Suffix) == \'\')">{{customfield.Suffix}}</span>',
-                    '</div>',
-                '</div>',
+            '<div ng-if="customfield.Lines <= 1">',
+            '<label ng-class="{\'required\': customfield.Required}">{{customfield.Label || customfield.Name}}</label>',
+            '<div ng-class="{\'input-group\':((customfield.Prefix && !hideprefix) || (customfield.Suffix && !hidesuffix))}">',
+            '<span class="input-group-addon" ng-if="customfield.Prefix && !hideprefix && !((customfield.Prefix) == \'\')">{{customfield.Prefix}}</span>',
+            '<input class="form-control" size="{{customfield.Width * .13}}" ng-maxlength="{{customfield.MaxLength}}" mask="{{customfield.MaskedInput || mask}}" type="text" autocomplete="off" ng-required="{{customfield.Required}}" ng-model="customfield.Value">',
+            '<span class="input-group-addon" ng-if="customfield.Suffix && !hidesuffix && !((customfield.Suffix) == \'\')">{{customfield.Suffix}}</span>',
+            '</div>',
+            '</div>',
             '</div>'
         ].join('');
     }
@@ -74,14 +74,14 @@ function occasefield() {
     function template() {
         return [
             '<div class="view-form-icon" ng-class="{\'view-form-icon-input-group\':((customfield.Prefix && !hideprefix) || (customfield.Suffix && !hidesuffix))}">',
-                '<div>',
-                    '<label ng-class="{\'required\': customfield.Required}">{{customfield.Label || customfield.Name}}</label>',
-                    '<div ng-class="{\'input-group\':((customfield.Prefix && !hideprefix) || (customfield.Suffix && !hidesuffix))}">',
-                        '<span class="input-group-addon" ng-if="customfield.Prefix && !hideprefix && !((customfield.Prefix) == \'\')">{{customfield.Prefix}}</span>',
-                        '<input class="form-control" size="{{customfield.Width * .13}}" ng-maxlength="{{customfield.MaxLength}}" ui-mask="{{customfield.MaskedInput}}" type="text" autocomplete="off" ng-required="{{customfield.Required}}" ng-model="customfield.Value"></input>',
-                        '<span class="input-group-addon" ng-if="customfield.Suffix && !hidesuffix && !((customfield.Suffix) == \'\')">{{customfield.Suffix}}</span>',
-                    '</div>',
-                '</div>',
+            '<div>',
+            '<label ng-class="{\'required\': customfield.Required}">{{customfield.Label || customfield.Name}}</label>',
+            '<div ng-class="{\'input-group\':((customfield.Prefix && !hideprefix) || (customfield.Suffix && !hidesuffix))}">',
+            '<span class="input-group-addon" ng-if="customfield.Prefix && !hideprefix && !((customfield.Prefix) == \'\')">{{customfield.Prefix}}</span>',
+            '<input class="form-control" size="{{customfield.Width * .13}}" ng-maxlength="{{customfield.MaxLength}}" ui-mask="{{customfield.MaskedInput}}" type="text" autocomplete="off" ng-required="{{customfield.Required}}" ng-model="customfield.Value">',
+            '<span class="input-group-addon" ng-if="customfield.Suffix && !hidesuffix && !((customfield.Suffix) == \'\')">{{customfield.Suffix}}</span>',
+            '</div>',
+            '</div>',
             '</div>'
         ].join('');
     }
@@ -112,22 +112,22 @@ function octextfield() {
     function template() {
         return [
             '<div class="view-form-icon" ng-class="{\'view-form-icon-input-group\':((customfield.Prefix && !hideprefix) || (customfield.Suffix && !hidesuffix))}">',
-                '<div ng-if="customfield.Lines <= 1">',
-                    '<label ng-class="{\'required\': customfield.Required}">{{customfield.Label || customfield.Name}}</label>',
-                    '<div ng-class="{\'input-group\':((customfield.Prefix && !hideprefix) || (customfield.Suffix && !hidesuffix))}">',
-                        '<span class="input-group-addon" ng-if="customfield.Prefix && !hideprefix && !((customfield.Prefix) == \'\')">{{customfield.Prefix}}</span>',
-                        '<input class="form-control" placeholder="{{customfield.Label || customfield.Name}}" size="{{customfield.Width * .13}}" ng-maxlength="{{customfield.MaxLength}}" mask="{{customfield.MaskedInput}}" type="text" autocomplete="off" ng-required="{{customfield.Required}}" ng-model="customfield.Value"></input>',
-                        '<span class="input-group-addon" ng-if="customfield.Suffix && !hidesuffix && !((customfield.Suffix) == \'\')">{{customfield.Suffix}}</span>',
-                    '</div>',
-                '</div>',
-                '<div ng-if="customfield.Lines > 1">',
-                    '<label ng-class="{\'required\': customfield.Required}">{{customfield.Label || customfield.Name}}</label>',
-                    '<div ng-class="{\'input-group\':((customfield.Prefix && !hideprefix) || (customfield.Suffix && !hidesuffix))}">',
-                        '<span class="input-group-addon" ng-if="customfield.Prefix && !hideprefix && !((customfield.Prefix) == \'\')">{{customfield.Prefix}}</span>',
-                        '<textarea class="form-control"  ng-attr-placeholder="{{customfield.Label || customfield.Name}}" cols="{{customfield.Width * .13}}" rows="{{customfield.Lines}}" ng-maxlength="{{customfield.MaxLength}}" ng-required="{{customfield.Required}}" ng-model="customfield.Value"></textarea>',
-                        '<span class="input-group-addon" ng-if="customfield.Suffix && !hidesuffix && !((customfield.Suffix) == \'\')">{{customfield.Suffix}}</span>',
-                    '</div>',
-                '</div>',
+            '<div ng-if="customfield.Lines <= 1">',
+            '<label ng-class="{\'required\': customfield.Required}">{{customfield.Label || customfield.Name}}</label>',
+            '<div ng-class="{\'input-group\':((customfield.Prefix && !hideprefix) || (customfield.Suffix && !hidesuffix))}">',
+            '<span class="input-group-addon" ng-if="customfield.Prefix && !hideprefix && !((customfield.Prefix) == \'\')">{{customfield.Prefix}}</span>',
+            '<input class="form-control" placeholder="{{customfield.Label || customfield.Name}}" size="{{customfield.Width * .13}}" ng-maxlength="{{customfield.MaxLength}}" mask="{{customfield.MaskedInput}}" type="text" autocomplete="off" ng-required="{{customfield.Required}}" ng-model="customfield.Value">',
+            '<span class="input-group-addon" ng-if="customfield.Suffix && !hidesuffix && !((customfield.Suffix) == \'\')">{{customfield.Suffix}}</span>',
+            '</div>',
+            '</div>',
+            '<div ng-if="customfield.Lines > 1">',
+            '<label ng-class="{\'required\': customfield.Required}">{{customfield.Label || customfield.Name}}</label>',
+            '<div ng-class="{\'input-group\':((customfield.Prefix && !hideprefix) || (customfield.Suffix && !hidesuffix))}">',
+            '<span class="input-group-addon" ng-if="customfield.Prefix && !hideprefix && !((customfield.Prefix) == \'\')">{{customfield.Prefix}}</span>',
+            '<textarea class="form-control"  ng-attr-placeholder="{{customfield.Label || customfield.Name}}" cols="{{customfield.Width * .13}}" rows="{{customfield.Lines}}" ng-maxlength="{{customfield.MaxLength}}" ng-required="{{customfield.Required}}" ng-model="customfield.Value"></textarea>',
+            '<span class="input-group-addon" ng-if="customfield.Suffix && !hidesuffix && !((customfield.Suffix) == \'\')">{{customfield.Suffix}}</span>',
+            '</div>',
+            '</div>',
             '</div>'
         ].join('');
     }
@@ -152,17 +152,17 @@ function ocselectionfield($451) {
     function template() {
         return [
             '<div class="view-form-icon" ng-class="{\'view-form-icon-input-group\':((customfield.Prefix && !hideprefix) || (customfield.Suffix && !hidesuffix))}">',
-                '<div>',
-                    '<label ng-class="{\'required\': customfield.Required}">{{customfield.Label || customfield.Name}}</label>',
-                    '<div ng-class="{\'input-group\':((customfield.Prefix && !hideprefix) || (customfield.Suffix && !hidesuffix))}">',
-                        '<span class="input-group-addon"  ng-if="customfield.Prefix && !hideprefix && !((customfield.Prefix) == \'\')">{{customfield.Prefix}}</span>',
-                        '<select class="form-control" ng-init="init()" ng-required="customfield.Required" ng-change="changed()" ng-model="item" ng-options="option.Value for option in customfield.Options" ng-if="customfield.Options">',
-                            '<option value=""></option></select>',
-                        '<input class="form-control" type="text" ng-change="otherChanged()" ng-model="other" ng-show="customfield.isOtherSelected" autocomplete="off" ng-required="customfield.Required && customfield.isOtherSelected" />',
-                        '<span class="input-group-addon"  ng-if="customfield.Suffix && !hidesuffix && !((customfield.Suffix) == \'\')">{{customfield.Suffix}}</span>',
-                    '</div>',
-                    '<i class="fa fa-edit"></i>',
-                '</div>',
+            '<div>',
+            '<label ng-class="{\'required\': customfield.Required}">{{customfield.Label || customfield.Name}}</label>',
+            '<div ng-class="{\'input-group\':((customfield.Prefix && !hideprefix) || (customfield.Suffix && !hidesuffix))}">',
+            '<span class="input-group-addon"  ng-if="customfield.Prefix && !hideprefix && !((customfield.Prefix) == \'\')">{{customfield.Prefix}}</span>',
+            '<select class="form-control" ng-init="init()" ng-required="customfield.Required" ng-change="changed()" ng-model="item" ng-options="option.Value for option in customfield.Options" ng-if="customfield.Options">',
+            '<option value=""></option></select>',
+            '<input class="form-control" type="text" ng-change="otherChanged()" ng-model="other" ng-show="customfield.isOtherSelected" autocomplete="off" ng-required="customfield.Required && customfield.isOtherSelected" />',
+            '<span class="input-group-addon"  ng-if="customfield.Suffix && !hidesuffix && !((customfield.Suffix) == \'\')">{{customfield.Suffix}}</span>',
+            '</div>',
+            '<i class="fa fa-edit"></i>',
+            '</div>',
             '</div>'
         ].join('');
     }
@@ -237,37 +237,37 @@ function ocfilefield($parse, $resource, $451, fileReader, Security) {
     function template() {
         return [
             '<div class="view-form-icon">',
-                '<div class="fileInput">',
-                    '<loadingindicator ng-show="uploadFileIndicator" title="Uploading"/>',
-                    '<label ng-class="{\'required\': customfield.Required}">{{customfield.Label || customfield.Name}}</label>',
-                    '<img ng-show="customfield.File.IsImage && customfield.FileType == \'Image\'" ng-src="{{customfield.File.Url}}"></img>',
-                    '<a ng-href="{{customfield.File.Url}}">{{customfield.File.OriginalName}}</a>',
-                    '<div ng-show="customfield.File">',
-                        '<input name="replace" class="replace" type="checkbox" ng-model="replace"></input> Replace',
-                        '<input name="delete" class="delete" type="checkbox"></input> Delete',
-                    '</div>',
-                    '<div ng-show="replace || !customfield.File" ng-class="{\'file-upload-required text-danger\': customfield.Required }" class="btn btn-default">',
-                        '<i class="fa fa-upload"></i> Upload File',
-                        '<input name="upload" class="upload" type="file"></input>',
-                    '</div>',
-                    '<hr />',
-                    '<input type="hidden" ng-required="customfield.Required" ng-model="customfield.File.ID"></input>',
-                    '<div class="error ui-state-error-text text-danger"></div>',
-                    '<div class="alert alert-info" ng-show="replace || !customfield.File">',
-                        '{{customfield.UploadInstructions}}',
-                        '<ul ng-show="replace || !customfield.File">',
-                            '<li>Allowed File Types: {{customfield.AllowedExt}}</li>',
-                            '<li ng-if="customfield.MinSize > 0">Minimum File Size: {{customfield.MinSize}}</li>',
-                            '<li ng-if="customfield.MaxSize > 0">Maximum File Size: {{customfield.MaxSize}}</li>',
-                            '<li ng-if="customfield.MinHeight > 0 && (customfield.File.IsImage || customfield.FileType == \'Image\')">Minimum Height: {{customfield.MinHeight + \' px\'}}</li>',
-                            '<li ng-if="customfield.MaxHeight > 0 && (customfield.File.IsImage || customfield.FileType == \'Image\')">Maximum Height: {{customfield.MaxHeight + \' px\'}}</li>',
-                            '<li ng-if="customfield.MinWidth > 0 && (customfield.File.IsImage || customfield.FileType == \'Image\')">Minimum Width: {{customfield.MinWidth + \' px\'}}</li>',
-                            '<li ng-if="customfield.MaxWidth > 0 && (customfield.File.IsImage || customfield.FileType == \'Image\')">Maximum Width: {{customfield.MaxWidth + \' px\'}}</li>',
-                            '<li ng-if="customfield.MinDPI > 0 && (customfield.File.IsImage || customfield.FileType == \'Image\')">Minimum DPI: {{(customfield.MinDPI) + \' dpi\'}}</li>',
-                            '<li ng-if="customfield.MaxDPI > 0 && (customfield.File.IsImage || customfield.FileType == \'Image\')">Maximum DPI: {{(customfield.MaxDPI) + \' dpi\'}}</li>',
-                        '</ul>',
-                    '</div>',
-                '</div>',
+            '<div class="fileInput">',
+            '<loadingindicator ng-show="uploadFileIndicator" title="Uploading"/>',
+            '<label ng-class="{\'required\': customfield.Required}">{{customfield.Label || customfield.Name}}</label>',
+            '<img ng-show="customfield.File.IsImage && customfield.FileType == \'Image\'" ng-src="{{customfield.File.Url}}">',
+            '<a ng-href="{{customfield.File.Url}}">{{customfield.File.OriginalName}}</a>',
+            '<div ng-show="customfield.File">',
+            '<input name="replace" class="replace" type="checkbox" ng-model="replace"> Replace',
+            '<input name="delete" class="delete" type="checkbox"> Delete',
+            '</div>',
+            '<div ng-show="replace || !customfield.File" ng-class="{\'file-upload-required text-danger\': customfield.Required }" class="btn btn-default">',
+            '<i class="fa fa-upload"></i> Upload File',
+            '<input name="upload" class="upload" type="file">',
+            '</div>',
+            '<hr />',
+            '<input type="hidden" ng-required="customfield.Required" ng-model="customfield.File.ID">',
+            '<div class="error ui-state-error-text text-danger"></div>',
+            '<div class="alert alert-info" ng-show="replace || !customfield.File">',
+            '{{customfield.UploadInstructions}}',
+            '<ul ng-show="replace || !customfield.File">',
+            '<li>Allowed File Types: {{customfield.AllowedExt}}</li>',
+            '<li ng-if="customfield.MinSize > 0">Minimum File Size: {{customfield.MinSize}}</li>',
+            '<li ng-if="customfield.MaxSize > 0">Maximum File Size: {{customfield.MaxSize}}</li>',
+            '<li ng-if="customfield.MinHeight > 0 && (customfield.File.IsImage || customfield.FileType == \'Image\')">Minimum Height: {{customfield.MinHeight + \' px\'}}</li>',
+            '<li ng-if="customfield.MaxHeight > 0 && (customfield.File.IsImage || customfield.FileType == \'Image\')">Maximum Height: {{customfield.MaxHeight + \' px\'}}</li>',
+            '<li ng-if="customfield.MinWidth > 0 && (customfield.File.IsImage || customfield.FileType == \'Image\')">Minimum Width: {{customfield.MinWidth + \' px\'}}</li>',
+            '<li ng-if="customfield.MaxWidth > 0 && (customfield.File.IsImage || customfield.FileType == \'Image\')">Maximum Width: {{customfield.MaxWidth + \' px\'}}</li>',
+            '<li ng-if="customfield.MinDPI > 0 && (customfield.File.IsImage || customfield.FileType == \'Image\')">Minimum DPI: {{(customfield.MinDPI) + \' dpi\'}}</li>',
+            '<li ng-if="customfield.MaxDPI > 0 && (customfield.File.IsImage || customfield.FileType == \'Image\')">Maximum DPI: {{(customfield.MaxDPI) + \' dpi\'}}</li>',
+            '</ul>',
+            '</div>',
+            '</div>',
             '</div>'
 
         ].join('');
@@ -343,7 +343,8 @@ function ocfilefield($parse, $resource, $451, fileReader, Security) {
     }
 }
 
-function ocdatefield() {
+ocdatefield.$inject = ['$filter'];
+function ocdatefield($filter) {
     var directive = {
         scope: {
             customfield : '=',
@@ -352,20 +353,30 @@ function ocdatefield() {
             format: '@'
         },
         restrict: 'E',
-        template: template
+        template: template,
+        link: function (scope) {
+            scope.$watch('customfield.Date', function (newVal){
+                if (!newVal) return;
+                scope.customfield.Value = $filter('date')(scope.customfield.Date, scope.format);
+            });
+            scope.$watch('customfield.Value', function (newVal){
+                if (!newVal) return;
+                scope.customfield.Date = new Date(getDateFromFormat(scope.customfield.Value, scope.format));
+            });
+        }
     };
     return directive;
 
     function template() {
         return [
             '<div class="view-form-icon">',
-                '<label ng-class="{\'required\': customfield.Required}">{{customfield.Label || customfield.Name}}</label>',
-                '<div ng-class="{\'input-group\':((customfield.Prefix && !hideprefix) || (customfield.Suffix && !hidesuffix))}">',
-                    '<span class="input-group-addon" ng-if="customfield.Prefix && !hideprefix && !((customfield.Prefix) == \'\')">{{customfield.Prefix}}</span>',
-                    '<input datepicker-popup="{{format}}" class="form-control" type="text" ng-required="customfield.Required" ng-model="customfield.Value"/>',
-                    '<span class="input-group-addon" ng-if="customfield.Suffix && !hidesuffix && !((customfield.Suffix) == \'\')">{{customfield.Suffix}}</span>',
-                    '<i class="fa fa-calendar"></i>',
-                '</div>',
+            '<label ng-class="{\'required\': customfield.Required}">{{customfield.Label || customfield.Name}}</label>',
+            '<div ng-class="{\'input-group\':((customfield.Prefix && !hideprefix) || (customfield.Suffix && !hidesuffix))}">',
+            '<span class="input-group-addon" ng-if="customfield.Prefix && !hideprefix && !((customfield.Prefix) == \'\')">{{customfield.Prefix}}</span>',
+            '<input datepicker-popup="{{format}}" class="form-control" type="text" ng-required="customfield.Required" placeholder="{{customfield.Value}}" ng-model="customfield.Date"/>',
+            '<span class="input-group-addon" ng-if="customfield.Suffix && !hidesuffix && !((customfield.Suffix) == \'\')">{{customfield.Suffix}}</span>',
+            '<i class="fa fa-calendar"></i>',
+            '</div>',
             '</div>'
         ].join('');
     }
@@ -387,23 +398,33 @@ function octimefield() {
     function template() {
         return [
             '<div class="form-group">',
-                '<label class="small" ng-class="{\'required\': customfield.Required}">{{customfield.Label || customfield.Name}}</label>',
-                '<div ng-class="{\'input-group\':((customfield.Prefix && !hideprefix) || (customfield.Suffix && !hidesuffix))}">',
-                    '<span class="input-group-addon" ng-if="customfield.Prefix && !hideprefix && !((customfield.Prefix) == \'\')">{{customfield.Prefix}}</span>',
-                    '<div ng-model="customfield.Value">',
-                        '<timepicker show-meridian="true"></timepicker>',
-                    '</div>',
-                    '<span class="input-group-addon" ng-if="customfield.Suffix && !hidesuffix && !((customfield.Suffix) == \'\')">{{customfield.Suffix}}</span>',
-                '</div>',
+            '<label class="small" ng-class="{\'required\': customfield.Required}">{{customfield.Label || customfield.Name}}</label>',
+            '<div ng-class="{\'input-group\':((customfield.Prefix && !hideprefix) || (customfield.Suffix && !hidesuffix))}">',
+            '<span class="input-group-addon" ng-if="customfield.Prefix && !hideprefix && !((customfield.Prefix) == \'\')">{{customfield.Prefix}}</span>',
+            '<timepicker ng-model="customfield.Time" show-meridian="true"></timepicker>',
+            '<span class="input-group-addon" ng-if="customfield.Suffix && !hidesuffix && !((customfield.Suffix) == \'\')">{{customfield.Suffix}}</span>',
+            '</div>',
             '</div>',
         ].join('');
     }
 
-    OCTimeFieldCtrl.$inject = ['$scope'];
-    function OCTimeFieldCtrl($scope) {
-        $scope.$watch('customfield', function(c) {
-            if (c && c.Value == "")
-                c.Value = new Date().toISOString();
+    OCTimeFieldCtrl.$inject = ['$scope', '$filter'];
+    function OCTimeFieldCtrl($scope, $filter) {
+        $scope.$watch('customfield.Time', function(newVal) {
+            if (!newVal) return;
+            $scope.customfield.Value = $filter('date')($scope.customfield.Time, 'shortTime');
+        });
+        $scope.$watch('customfield.Value', function(newVal){
+            if (!newVal) return;
+            var dateParts = $scope.customfield.Value.split(':');
+            var hours = parseInt(dateParts[0]);
+            var minutes = parseInt(dateParts[1].split(' ')[0]);
+            var meridian = dateParts[1].split(' ')[1];
+            if ((meridian == 'PM' && hours != 12) || (meridian == 'AM' && hours == 12))
+                hours = hours + 12;
+            $scope.customfield.Time = new Date();
+            $scope.customfield.Time.setHours(hours);
+            $scope.customfield.Time.setMinutes(minutes);
         });
     }
 }
@@ -423,10 +444,10 @@ function occheckboxfield() {
     function template() {
         return [
             '<div class="checkbox">',
-                '<label ng-class="{\'required\': customfield.Required}">{{customfield.Label || customfield.Name}}',
-                    '<input type="checkbox" ng-true-value="{{checked}}" ng-false-value="{{unchecked}}" ng-model="customfield.Value">',
-                '</label>',
-                '</div>',
+            '<label ng-class="{\'required\': customfield.Required}">{{customfield.Label || customfield.Name}}',
+            '<input type="checkbox" ng-true-value="{{checked}}" ng-false-value="{{unchecked}}" ng-model="customfield.Value">',
+            '</label>',
+            '</div>',
         ].join('');
     }
 }
@@ -511,7 +532,7 @@ function octextboxfield() {
             }, settings), defs = $.mask.definitions, tests = [], partialPosition = len = mask.length,
                 firstNonMaskPos = null, $.each(mask.split(""), function(i, c) {
                 "?" == c ? (len--, partialPosition = i) : defs[c] ? (tests.push(new RegExp(defs[c])),
-                    null === firstNonMaskPos && (firstNonMaskPos = tests.length - 1), partialPosition > i && (lastRequiredNonMaskPos = tests.length - 1)) : tests.push(null);
+                null === firstNonMaskPos && (firstNonMaskPos = tests.length - 1), partialPosition > i && (lastRequiredNonMaskPos = tests.length - 1)) : tests.push(null);
             }), this.trigger("unmask").each(function() {
                 function tryFireCompleted() {
                     if (settings.completed) {
@@ -577,7 +598,7 @@ function octextboxfield() {
                         var p, c, next, k = e.which || e.keyCode, pos = input.caret();
                         if (!(e.ctrlKey || e.altKey || e.metaKey || 32 > k) && k && 13 !== k) {
                             if (pos.end - pos.begin !== 0 && (clearBuffer(pos.begin, pos.end), shiftL(pos.begin, pos.end - 1)),
-                                p = seekNext(pos.begin - 1), len > p && (c = String.fromCharCode(k), tests[p].test(c))) {
+                                    p = seekNext(pos.begin - 1), len > p && (c = String.fromCharCode(k), tests[p].test(c))) {
                                 if (shiftR(p), buffer[p] = c, writeBuffer(), next = seekNext(p), android) {
                                     var proxy = function() {
                                         $.proxy($.fn.caret, input, next)();
@@ -601,7 +622,7 @@ function octextboxfield() {
                     var i, c, pos, test = input.val(), lastMatch = -1;
                     for (i = 0, pos = 0; len > i; i++) if (tests[i]) {
                         for (buffer[i] = getPlaceholder(i); pos++ < test.length; ) if (c = test.charAt(pos - 1),
-                            tests[i].test(c)) {
+                                tests[i].test(c)) {
                             buffer[i] = c, lastMatch = i;
                             break;
                         }
@@ -642,3 +663,175 @@ function octextboxfield() {
         }
     });
 });
+
+/* Extra functions for ocdatefield */
+// ===================================================================
+// Author: Matt Kruse <matt@mattkruse.com>
+// WWW: http://www.mattkruse.com/
+//
+// NOTICE: You may use this code for any purpose, commercial or
+// private, without any further permission from the author. You may
+// remove this notice from your final code if you wish, however it is
+// appreciated by the author if at least my web site address is kept.
+//
+// You may *NOT* re-distribute this code in any way except through its
+// use. That means, you can include it in your product, or your web
+// site, or any other form where the code is actually being used. You
+// may not put the plain javascript up on your site for download or
+// include it in your javascript libraries for download.
+// If you wish to share this code with others, please just point them
+// to the URL instead.
+// Please DO NOT link directly to my .js files from your site. Copy
+// the files to your server and use them there. Thank you.
+// ===================================================================
+var MONTH_NAMES=new Array('January','February','March','April','May','June','July','August','September','October','November','December','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec');
+var DAY_NAMES=new Array('Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sun','Mon','Tue','Wed','Thu','Fri','Sat');
+function LZ(x) {return(x<0||x>9?"":"0")+x}
+// ------------------------------------------------------------------
+// getDateFromFormat( date_string , format_string )
+//
+// This function takes a date string and a format string. It matches
+// If the date string matches the format string, it returns the
+// getTime() of the date. If it does not match, it returns 0.
+// ------------------------------------------------------------------
+function getDateFromFormat(val,format) {
+    val=val+"";
+    format=format+"";
+    var i_val=0;
+    var i_format=0;
+    var c="";
+    var token="";
+    var token2="";
+    var x,y;
+    var now=new Date();
+    var year=now.getYear();
+    var month=now.getMonth()+1;
+    var date=1;
+    var hh=now.getHours();
+    var mm=now.getMinutes();
+    var ss=now.getSeconds();
+    var ampm="";
+
+    while (i_format < format.length) {
+        // Get next token from format string
+        c=format.charAt(i_format);
+        token="";
+        while ((format.charAt(i_format)==c) && (i_format < format.length)) {
+            token += format.charAt(i_format++);
+        }
+        // Extract contents of value based on format token
+        if (token=="yyyy" || token=="yy" || token=="y") {
+            if (token=="yyyy") { x=4;y=4; }
+            if (token=="yy")   { x=2;y=2; }
+            if (token=="y")    { x=2;y=4; }
+            year=_getInt(val,i_val,x,y);
+            if (year==null) { return 0; }
+            i_val += year.length;
+            if (year.length==2) {
+                if (year > 70) { year=1900+(year-0); }
+                else { year=2000+(year-0); }
+            }
+        }
+        else if (token=="MMM"||token=="NNN"){
+            month=0;
+            for (var i=0; i<MONTH_NAMES.length; i++) {
+                var month_name=MONTH_NAMES[i];
+                if (val.substring(i_val,i_val+month_name.length).toLowerCase()==month_name.toLowerCase()) {
+                    if (token=="MMM"||(token=="NNN"&&i>11)) {
+                        month=i+1;
+                        if (month>12) { month -= 12; }
+                        i_val += month_name.length;
+                        break;
+                    }
+                }
+            }
+            if ((month < 1)||(month>12)){return 0;}
+        }
+        else if (token=="EE"||token=="E"){
+            for (var i=0; i<DAY_NAMES.length; i++) {
+                var day_name=DAY_NAMES[i];
+                if (val.substring(i_val,i_val+day_name.length).toLowerCase()==day_name.toLowerCase()) {
+                    i_val += day_name.length;
+                    break;
+                }
+            }
+        }
+        else if (token=="MM"||token=="M") {
+            month=_getInt(val,i_val,token.length,2);
+            if(month==null||(month<1)||(month>12)){return 0;}
+            i_val+=month.length;}
+        else if (token=="dd"||token=="d") {
+            date=_getInt(val,i_val,token.length,2);
+            if(date==null||(date<1)||(date>31)){return 0;}
+            i_val+=date.length;}
+        else if (token=="hh"||token=="h") {
+            hh=_getInt(val,i_val,token.length,2);
+            if(hh==null||(hh<1)||(hh>12)){return 0;}
+            i_val+=hh.length;}
+        else if (token=="HH"||token=="H") {
+            hh=_getInt(val,i_val,token.length,2);
+            if(hh==null||(hh<0)||(hh>23)){return 0;}
+            i_val+=hh.length;}
+        else if (token=="KK"||token=="K") {
+            hh=_getInt(val,i_val,token.length,2);
+            if(hh==null||(hh<0)||(hh>11)){return 0;}
+            i_val+=hh.length;}
+        else if (token=="kk"||token=="k") {
+            hh=_getInt(val,i_val,token.length,2);
+            if(hh==null||(hh<1)||(hh>24)){return 0;}
+            i_val+=hh.length;hh--;}
+        else if (token=="mm"||token=="m") {
+            mm=_getInt(val,i_val,token.length,2);
+            if(mm==null||(mm<0)||(mm>59)){return 0;}
+            i_val+=mm.length;}
+        else if (token=="ss"||token=="s") {
+            ss=_getInt(val,i_val,token.length,2);
+            if(ss==null||(ss<0)||(ss>59)){return 0;}
+            i_val+=ss.length;}
+        else if (token=="a") {
+            if (val.substring(i_val,i_val+2).toLowerCase()=="am") {ampm="AM";}
+            else if (val.substring(i_val,i_val+2).toLowerCase()=="pm") {ampm="PM";}
+            else {return 0;}
+            i_val+=2;}
+        else {
+            if (val.substring(i_val,i_val+token.length)!=token) {return 0;}
+            else {i_val+=token.length;}
+        }
+    }
+    // If there are any trailing characters left in the value, it doesn't match
+    if (i_val != val.length) { return 0; }
+    // Is date valid for month?
+    if (month==2) {
+        // Check for leap year
+        if ( ( (year%4==0)&&(year%100 != 0) ) || (year%400==0) ) { // leap year
+            if (date > 29){ return 0; }
+        }
+        else { if (date > 28) { return 0; } }
+    }
+    if ((month==4)||(month==6)||(month==9)||(month==11)) {
+        if (date > 30) { return 0; }
+    }
+    // Correct hours value
+    if (hh<12 && ampm=="PM") { hh=hh-0+12; }
+    else if (hh>11 && ampm=="AM") { hh-=12; }
+    var newdate=new Date(year,month-1,date,hh,mm,ss);
+    return newdate.getTime();
+}
+// ------------------------------------------------------------------
+// Utility functions for parsing in getDateFromFormat()
+// ------------------------------------------------------------------
+function _isInteger(val) {
+    var digits="1234567890";
+    for (var i=0; i < val.length; i++) {
+        if (digits.indexOf(val.charAt(i))==-1) { return false; }
+    }
+    return true;
+}
+function _getInt(str,i,minlength,maxlength) {
+    for (var x=maxlength; x>=minlength; x--) {
+        var token=str.substring(i,i+x);
+        if (token.length < minlength) { return null; }
+        if (_isInteger(token)) { return token; }
+    }
+    return null;
+}

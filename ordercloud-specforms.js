@@ -383,7 +383,8 @@ function ocdatefield($filter) {
     }
 }
 
-function octimefield() {
+octimefield.$inject = ['$scope', '$filter'];
+function octimefield($scope, $filter) {
     var directive = {
         scope: {
             customfield : '=',

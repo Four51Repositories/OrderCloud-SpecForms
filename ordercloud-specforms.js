@@ -67,7 +67,12 @@ function occasefield() {
         },
         restrict: 'E',
         template: template,
-        controller: OCCaseFieldCtrl
+        link: function (scope) {
+            scope.$watch('customfield.Value', function(val) {
+                if (!val) return;
+                scope.customfield.Value =  val[scope.case == 'upper' ? 'toUpperCase' : 'toLowerCase']();
+            });
+        }
     };
     return directive;
 
@@ -84,14 +89,6 @@ function occasefield() {
             '</div>',
             '</div>'
         ].join('');
-    }
-
-    OCCaseFieldCtrl.$inject = ['$scope'];
-    function OCCaseFieldCtrl($scope) {
-        $scope.$watch('customfield.Value', function(val) {
-            if (!val) return;
-            $scope.customfield.Value =  val[$scope.case == 'upper' ? 'toUpperCase' : 'toLowerCase']();
-        });
     }
 }
 
@@ -383,7 +380,8 @@ function ocdatefield($filter) {
     }
 }
 
-function octimefield() {
+octimefield.$inject = ['$filter'];
+function octimefield($filter) {
     var directive = {
         scope: {
             customfield : '=',
@@ -392,7 +390,24 @@ function octimefield() {
         },
         restrict: 'E',
         template: template,
-        controller: OCTimeFieldCtrl
+        link: function (scope) {
+            scope.$watch('customfield.Time', function(newVal) {
+                if (!newVal) return;
+                scope.customfield.Value = $filter('date')(scope.customfield.Time, 'shortTime');
+            });
+            scope.$watch('customfield.Value', function(newVal){
+                if (!newVal) return;
+                var dateParts = scope.customfield.Value.split(':');
+                var hours = parseInt(dateParts[0]);
+                var minutes = parseInt(dateParts[1].split(' ')[0]);
+                var meridian = dateParts[1].split(' ')[1];
+                if ((meridian == 'PM' && hours != 12) || (meridian == 'AM' && hours == 12))
+                    hours = hours + 12;
+                scope.customfield.Time = new Date();
+                scope.customfield.Time.setHours(hours);
+                scope.customfield.Time.setMinutes(minutes);
+            });
+        }
     };
     return directive;
 
@@ -405,28 +420,8 @@ function octimefield() {
             '<timepicker ng-model="customfield.Time" show-meridian="true"></timepicker>',
             '<span class="input-group-addon" ng-if="customfield.Suffix && !hidesuffix && !((customfield.Suffix) == \'\')">{{customfield.Suffix}}</span>',
             '</div>',
-            '</div>',
+            '</div>'
         ].join('');
-    }
-
-    OCTimeFieldCtrl.$inject = ['$scope', '$filter'];
-    function OCTimeFieldCtrl($scope, $filter) {
-        $scope.$watch('customfield.Time', function(newVal) {
-            if (!newVal) return;
-            $scope.customfield.Value = $filter('date')($scope.customfield.Time, 'shortTime');
-        });
-        $scope.$watch('customfield.Value', function(newVal){
-            if (!newVal) return;
-            var dateParts = $scope.customfield.Value.split(':');
-            var hours = parseInt(dateParts[0]);
-            var minutes = parseInt(dateParts[1].split(' ')[0]);
-            var meridian = dateParts[1].split(' ')[1];
-            if ((meridian == 'PM' && hours != 12) || (meridian == 'AM' && hours == 12))
-                hours = hours + 12;
-            $scope.customfield.Time = new Date();
-            $scope.customfield.Time.setHours(hours);
-            $scope.customfield.Time.setMinutes(minutes);
-        });
     }
 }
 

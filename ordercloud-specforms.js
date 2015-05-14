@@ -467,14 +467,16 @@ function octextboxfield() {
             scope.$watch('$parent.LineItem', function() {
                 if (scope.$parent.LineItem && scope.$parent.LineItem.Specs && scope.$parent.LineItem.Specs[scope.specName] && !scope.labelAdded) {
                     scope.labelAdded = true;
-                    $(elm[0]).before("<label style='top: -20px;font-size: 11px;display: block;'>" + scope.$parent.LineItem.Specs[scope.specName].Label + "</label>");
+                    var label = scope.$parent.LineItem.Specs[scope.specName].Label ? scope.$parent.LineItem.Specs[scope.specName].Label : scope.$parent.LineItem.Specs[scope.specName].Name;
+                    $(elm[0]).before("<label style='top: -20px;font-size: 11px;display: block;'>" + label + "</label>");
                 }
             }, true);
 
             scope.$watch('Variant', function() {
                 if (scope.Variant && scope.Variant.Specs && scope.Variant.Specs[scope.specName] && !scope.labelAdded) {
                     scope.labelAdded = true;
-                    $(elm[0]).before("<label style='top: -20px;font-size: 11px;display: block;'>" + scope.Variant.Specs[scope.specName].Label + "</label>");
+                    var label = scope.Variant.Specs[scope.specName].Label ? scope.Variant.Specs[scope.specName].Label : scope.Variant.Specs[scope.specName].Name;
+                    $(elm[0]).before("<label style='top: -20px;font-size: 11px;display: block;'>" + (scope.Variant.Specs[scope.specName].Label || scope.Variant.Specs[scope.specName].Name) + "</label>");
                 }
             }, true);
 

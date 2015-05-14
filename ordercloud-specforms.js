@@ -462,6 +462,19 @@ function octextboxfield() {
             /* Take no additional action if there is no ngModel value on the element */
             if(!ngModel) return;
 
+            var specName = attr.ngModel.split('.')[2];
+            scope.$watch('$parent.LineItem', function() {
+                if (scope.$parent.LineItem && scope.$parent.LineItem.Specs && scope.$parent.LineItem.Specs[specName]) {
+                    $(elm[0]).before("<label style='top: -20px;font-size: 11px;display: block;'>" + scope.$parent.LineItem.Specs[specName].Label + "</label>");
+                }
+            }, true);
+
+            scope.$watch('Variant', function() {
+                if (scope.Variant && scope.Variant.Specs && scope.Variant.Specs[specName]) {
+                    $(elm[0]).before("<label style='top: -20px;font-size: 11px;display: block;'>" + scope.Variant.Specs[specName].Label + "</label>");
+                }
+            }, true);
+
             /* Directive detects that text has been pasted in from the clipboard */
             ck.on('pasteState', function() {
                 scope.$apply(function() {

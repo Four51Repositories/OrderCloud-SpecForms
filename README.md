@@ -1,12 +1,35 @@
 #Spec Form Directives for OrderCloud 2.0
 
-This is a repository of useful AngularJS directive for OrderCloud 2.0 spec forms and product detail templates. Several already are included in the OrderCloud Storefront reference app. 
+This is a repository of useful AngularJS directives for OrderCloud 2.0 including usage for spec forms and product detail templates. Similar directives are already included in the OrderCloud Storefront reference application and are annotated below where the alternative storefront method is available. 
 
-## Getting Started
+##Setup
+###1. Add module file to your project.
+Add the **`ordercloud-specforms.js`** file to your project.
 
-- Include the file: ordercloud-specforms.js in your repository.  We recommend the "lib" folder, but you can place it anywhere inside the "app" folder you wish. 
-- Reference the new script file in your index.html file. Be careful to identify the path/location correctly.
-- Inject the module into your app.module function. Remember the name of the module is "OrderCloud-SpecForms"
+If you are using a repository, we suggest adding this file to the **`/lib/oc`** directory.
+
+If you are using file overrides, create a new file override named **`lib/oc/ordercloud-specforms.js`** and add this file as the content by following these steps:
+
+ 1. Edit your 2.0 site
+ 2. Go to “Code Editor” tab
+ 3. Click “New File Override”
+ 4. Name this file **`lib/oc/ordercloud-specforms.js`**
+ 5. Place raw code from **`ordercloud-specforms.js`**  in the section below. Save.
+
+###2. Reference the script.
+**Important!** Be sure to reference the new/updated JS files in the **`index.html`** file by following these steps:
+
+ 1. In Code Editor, locate your index.html file, hit edit. 
+ 2. Add `<script src="lib/oc/ordercloud-specforms.js" data-group="resources"></script>` in the section with “lib/oc” files. 
+ 3. Add the external script reference for the octextboxfield.  Add `<script src="//cdn.ckeditor.com/4.4.7/basic/ckeditor.js" data-group="cdn"></script>`. 
+ 4. Save
+
+###3. Load the module into the application.
+Inject the module into your app.module function.  For example, add a dependency for `OrderCloud-SpecForms` to the Four51.app module in the **`js/app.js`** file by following these steps. 
+
+ 1. In Code Editor, locate your **`js/app.js`** file, hit edit. 
+ 2. Add **‘OrderCloud-SpecForms’** into the file.
+ 3. Save.
 
 # Directives
 
@@ -45,11 +68,14 @@ A directive for generic text input. When the variable spec property contains mul
   - hideprefix: Boolean value. If set to "true" prefix text will be hidden
   - hidesuffix: Boolean value. If set to "true" suffix text will be hidden
 - Example usage
-  - ``` <octextfield customfield='Variant.Specs.Title'></octextfield>```
+  - ``` <octextfield customfield='Variant.Specs.SpecName'></octextfield>``` 
+- *Alternative Method in Storefront*
+  - ``` <customtextfield customfield='Variant.Specs.SpecName'></customtextfield>``` 
+
 
 ## ocselectionfield
 
-A directive for select lists. The result is a dropdown control that contain all the options defined in the spec properties. This directive also accommodates the "Other" option functionality. 
+A directive for select lists. The result is a dropdown control that contains all of the options defined in the spec properties. This directive also accommodates the "Other" option functionality. 
 
 - Properties
   - customfield: Required property. Specify the variable spec
@@ -57,6 +83,8 @@ A directive for select lists. The result is a dropdown control that contain all 
   - hidesuffix: Boolean value. If set to "true" suffix text will be hidden
 - Example usage
   - ``` <ocselectionfield customfield='Variant.Specs.Options'></ocselectionfield>```
+- *Alternative Method in Storefront*
+  - ``` <customselectionfield customfield='Variant.Specs.SpecName'></customselectionfield>``` 
 
 ## ocfilefield
 
@@ -66,6 +94,8 @@ A directive to the HTML5 File Upload control with Variable Specs. This directive
   - customfield: Required property. Specify the variable spec
 - Example usage
   - ``` <ocfilefield customfield='Variant.Specs.Photo'></ocfilefield>```
+- *Alternative Method in Storefront*
+  - ``` <customfilefield customfield='Variant.Specs.SpecName'></customfilefield>``` 
 
 ## ocdatefield
 
@@ -78,6 +108,8 @@ A directive to provide a calendar control for date selection. The spec must be a
   - format: The format for displayed dates. Defaults to 'MM/dd/yyyy'
 - Example usage
   - ``` <ocdatefield customfield='Variant.Specs.StartDate' format='dd-MM-yyyy'></ocdatefield>```
+- *Alternative Method in Storefront*
+  - ``` <customdatefield customfield='Variant.Specs.SpecName'></customdatefield>``` 
 
 ## octimefield
 
@@ -89,6 +121,8 @@ A directive to utilize the Angular Bootstrap [http://angular-ui.github.io/bootst
   - hidesuffix: Boolean value. If set to "true" suffix text will be hidden
 - Example usage
   - ``` <octimefield customfield='Variant.Specs.StartTime'></octimefield>```
+- *Alternative Method in Storefront*
+  - ``` <customtimefield customfield='Variant.Specs.SpecName'></customtimefield>``` 
 
 ## occheckboxfield
 
@@ -101,6 +135,8 @@ A directive to expose a checkbox control and apply the defined value to the Spec
   
 - Example usage
   - ``` <occheckboxfield customfield='Variant.Specs.Approved' checked='Yes' unchecked='No'></occheckboxfield>```
+- *Alternative Method in Storefront*
+  - ``` <customcheckboxfield customfield='Variant.Specs.SpecName' checked='unchecked'></customcheckboxfield>``` 
 
 ## octextboxfield
 
@@ -108,7 +144,7 @@ A directive to create a ckeditor on the page and bind it to a model.
 - Properties
   - ng-model: This is the value you want to bind to.
 
-- Exampe usage
+- Example usage
   - ``` <textarea octextboxfield ng-model="Variant.Specs.AdditionalInformation.Value"></textarea> ```
 
 - Important Note: if you are using the octextboxfield, in the index file you need to add an extra script:

@@ -462,16 +462,19 @@ function octextboxfield() {
             /* Take no additional action if there is no ngModel value on the element */
             if(!ngModel) return;
 
-            var specName = attr.ngModel.split('.')[2];
+            scope.specName = attr.ngModel.split('.')[2];
+            scope.labelAdded = false;
             scope.$watch('$parent.LineItem', function() {
-                if (scope.$parent.LineItem && scope.$parent.LineItem.Specs && scope.$parent.LineItem.Specs[specName]) {
-                    $(elm[0]).before("<label style='top: -20px;font-size: 11px;display: block;'>" + scope.$parent.LineItem.Specs[specName].Label + "</label>");
+                if (scope.$parent.LineItem && scope.$parent.LineItem.Specs && scope.$parent.LineItem.Specs[scope.specName] && !scope.labelAdded) {
+                    scope.labelAdded = true;
+                    $(elm[0]).before("<label style='top: -20px;font-size: 11px;display: block;'>" + scope.$parent.LineItem.Specs[scope.specName].Label + "</label>");
                 }
             }, true);
 
             scope.$watch('Variant', function() {
-                if (scope.Variant && scope.Variant.Specs && scope.Variant.Specs[specName]) {
-                    $(elm[0]).before("<label style='top: -20px;font-size: 11px;display: block;'>" + scope.Variant.Specs[specName].Label + "</label>");
+                if (scope.Variant && scope.Variant.Specs && scope.Variant.Specs[scope.specName] && !scope.labelAdded) {
+                    scope.labelAdded = true;
+                    $(elm[0]).before("<label style='top: -20px;font-size: 11px;display: block;'>" + scope.Variant.Specs[scope.specName].Label + "</label>");
                 }
             }, true);
 

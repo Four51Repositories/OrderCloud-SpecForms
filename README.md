@@ -2,6 +2,8 @@
 
 This is a repository of useful AngularJS directives for OrderCloud 2.0 including usage for spec forms and product detail templates. Similar directives are already included in the OrderCloud Storefront reference application and are annotated below where the alternative storefront method is available. 
 
+To learn more about this feature and see examples, visit this [page](https://volition.four51ordercloud.com/store/product/SpecFormDirectives).  
+
 ##Setup
 ###1. Add module file to your project.
 Add the **`ordercloud-specforms.js`** file to your project.
@@ -11,8 +13,8 @@ If you are using a repository, we suggest adding this file to the **`/lib/oc`** 
 If you are using file overrides, create a new file override named **`lib/oc/ordercloud-specforms.js`** and add this file as the content by following these steps:
 
  1. Edit your 2.0 site
- 2. Go to ìCode Editorî tab
- 3. Click ìNew File Overrideî
+ 2. Go to ‚ÄúCode Editor‚Äù tab
+ 3. Click ‚ÄúNew File Override‚Äù
  4. Name this file **`lib/oc/ordercloud-specforms.js`**
  5. Place raw code from **`ordercloud-specforms.js`**  in the section below. Save.
 
@@ -20,7 +22,7 @@ If you are using file overrides, create a new file override named **`lib/oc/orde
 **Important!** Be sure to reference the new/updated JS files in the **`index.html`** file by following these steps:
 
  1. In Code Editor, locate your index.html file, hit edit. 
- 2. Add `<script src="lib/oc/ordercloud-specforms.js" data-group="resources"></script>` in the section with ìlib/ocî files. 
+ 2. Add `<script src="lib/oc/ordercloud-specforms.js" data-group="resources"></script>` in the section with ‚Äúlib/oc‚Äù files. 
  3. Add the external script reference for the octextboxfield.  Add `<script src="//cdn.ckeditor.com/4.4.7/basic/ckeditor.js" data-group="cdn"></script>`. 
  4. Save
 
@@ -28,7 +30,7 @@ If you are using file overrides, create a new file override named **`lib/oc/orde
 Inject the module into your app.module function.  For example, add a dependency for `OrderCloud-SpecForms` to the Four51.app module in the **`js/app.js`** file by following these steps. 
 
  1. In Code Editor, locate your **`js/app.js`** file, hit edit. 
- 2. Add **ëOrderCloud-SpecFormsí** into the file.
+ 2. Add **‚ÄòOrderCloud-SpecForms‚Äô** into the file.
  3. Save.
 
 # Directives

@@ -2,8 +2,6 @@
 
 This is a repository of useful AngularJS directives for OrderCloud 2.0 including usage for spec forms and product detail templates. Similar directives are already included in the OrderCloud Storefront reference application and are annotated below where the alternative storefront method is available. 
 
-To learn more about this feature and see examples, visit this [page](https://volition.four51ordercloud.com/store/product/SpecFormDirectives).  
-
 ##Setup
 ###1. Add module file to your project.
 Add the **`ordercloud-specforms.js`** file to your project.
@@ -41,11 +39,12 @@ A directive that allows for masking input for variable specs. The key difference
 
 - Properties
   - customfield: Required property. Specify the variable spec
+  - label: Optional property. Specify the label.
   - mask: Required property. Specify the mask signature. Ex: 999-***-aaa
   - hideprefix: Boolean value. If set to "true" prefix text will be hidden
   - hidesuffix: Boolean value. If set to "true" suffix text will be hidden
 - Example usage
-  - ``` <ocmaskfield customfield='Variant.Specs.Phone' mask='999.999.9999 x999'></ocmaskfield>```
+  - ``` <ocmaskfield customfield='Variant.Specs.Phone' label='Custom' mask='999.999.9999 x999'></ocmaskfield>```
 - Notes
   - The plugin is an angular implementation of the Masked Input plugin for jQuery @ http://digitalbush.com/projects/masked-input-plugin/#license
   
@@ -55,11 +54,26 @@ A directive that enforces case specified for variable specs.
 
 - Properties
   - customfield: Required property. Specify the variable spec
+  - label: Optional property. Specify the label.
+  - placeholder: Optional property. Specify the placeholder.
   - case: Required property. Specify the case to enforce. Options: 'upper', 'lower'
   - hideprefix: Boolean value. If set to "true" prefix text will be hidden
   - hidesuffix: Boolean value. If set to "true" suffix text will be hidden
 - Example usage
-  - ``` <occasefield customfield='Variant.Specs.Name' case='upper'></occasefield>```
+  - ``` <occasefield customfield='Variant.Specs.Name' label='Custom' case='upper'></occasefield>```
+
+## octitlefield
+
+A directive that enforces Title Case specified for variable specs.  
+
+- Properties
+  - customfield: Required property. Specify the variable spec
+  - label: Optional property. Specify the label.
+  - placeholder: Optional property. Specify the placeholder.
+  - hideprefix: Boolean value. If set to "true" prefix text will be hidden
+  - hidesuffix: Boolean value. If set to "true" suffix text will be hidden
+- Example usage
+  - ``` <octitlefield customfield='Variant.Specs.Name' label='Custom'></octitlefield>```
 
 ## octextfield
 
@@ -67,13 +81,27 @@ A directive for generic text input. When the variable spec property contains mul
 
 - Properties
   - customfield: Required property. Specify the variable spec
+  - label: Optional property. Specify the label.
+  - placeholder: Optional property. Specify the placeholder.
   - hideprefix: Boolean value. If set to "true" prefix text will be hidden
   - hidesuffix: Boolean value. If set to "true" suffix text will be hidden
 - Example usage
-  - ``` <octextfield customfield='Variant.Specs.SpecName'></octextfield>``` 
+  - ``` <octextfield customfield='Variant.Specs.SpecName' label='Custom'></octextfield>``` 
 - *Alternative Method in Storefront*
   - ``` <customtextfield customfield='Variant.Specs.SpecName'></customtextfield>``` 
 
+## ocemailfield
+
+A directive for generic email input. If the field has a mask value, such as for Custom Order Fields and Custom User Fields, the value will include the mask characters. 
+
+- Properties
+  - customfield: Required property. Specify the variable spec
+  - label: Optional property. Specify the label.
+  - placeholder: Optional property. Specify the placeholder.
+  - hideprefix: Boolean value. If set to "true" prefix text will be hidden
+  - hidesuffix: Boolean value. If set to "true" suffix text will be hidden
+- Example usage
+  - ``` <ocemailfield customfield='Variant.Specs.SpecName' label='Custom'></ocemailfield>```
 
 ## ocselectionfield
 
@@ -81,10 +109,11 @@ A directive for select lists. The result is a dropdown control that contains all
 
 - Properties
   - customfield: Required property. Specify the variable spec
+  - label: Optional property. Specify the label.
   - hideprefix: Boolean value. If set to "true" prefix text will be hidden
   - hidesuffix: Boolean value. If set to "true" suffix text will be hidden
 - Example usage
-  - ``` <ocselectionfield customfield='Variant.Specs.Options'></ocselectionfield>```
+  - ``` <ocselectionfield customfield='Variant.Specs.Options' label='Custom'></ocselectionfield>```
 - *Alternative Method in Storefront*
   - ``` <customselectionfield customfield='Variant.Specs.SpecName'></customselectionfield>``` 
 
@@ -94,8 +123,9 @@ A directive to the HTML5 File Upload control with Variable Specs. This directive
 
 - Properties
   - customfield: Required property. Specify the variable spec
+  - label: Optional property. Specify the label.
 - Example usage
-  - ``` <ocfilefield customfield='Variant.Specs.Photo'></ocfilefield>```
+  - ``` <ocfilefield customfield='Variant.Specs.Photo' label='Custom'></ocfilefield>```
 - *Alternative Method in Storefront*
   - ``` <customfilefield customfield='Variant.Specs.SpecName'></customfilefield>``` 
 
@@ -105,11 +135,12 @@ A directive to provide a calendar control for date selection. The spec must be a
 
 - Properties
   - customfield: Required property. Specify the variable spec
+  - label: Optional property. Specify the label.
   - hideprefix: Boolean value. If set to "true" prefix text will be hidden
   - hidesuffix: Boolean value. If set to "true" suffix text will be hidden
   - format: The format for displayed dates. Defaults to 'MM/dd/yyyy'
 - Example usage
-  - ``` <ocdatefield customfield='Variant.Specs.StartDate' format='dd-MM-yyyy'></ocdatefield>```
+  - ``` <ocdatefield customfield='Variant.Specs.StartDate' label='Custom' format='dd-MM-yyyy'></ocdatefield>```
 - *Alternative Method in Storefront*
   - ``` <customdatefield customfield='Variant.Specs.SpecName'></customdatefield>``` 
 
@@ -119,10 +150,11 @@ A directive to utilize the Angular Bootstrap [http://angular-ui.github.io/bootst
 
 - Properties
   - customfield: Required property. Specify the variable spec
+  - label: Optional property. Specify the label.
   - hideprefix: Boolean value. If set to "true" prefix text will be hidden
   - hidesuffix: Boolean value. If set to "true" suffix text will be hidden
 - Example usage
-  - ``` <octimefield customfield='Variant.Specs.StartTime'></octimefield>```
+  - ``` <octimefield customfield='Variant.Specs.StartTime' label='Custom'></octimefield>```
 - *Alternative Method in Storefront*
   - ``` <customtimefield customfield='Variant.Specs.SpecName'></customtimefield>``` 
 
@@ -132,11 +164,12 @@ A directive to expose a checkbox control and apply the defined value to the Spec
 
 - Properties
   - customfield: Required property. Specify the variable spec
+  - label: Optional property. Specify the label.
   - checked: The value assigned to the spec when the control state is checked
   - unchecked: The value assigned to the spec when the control state is not checked
   
 - Example usage
-  - ``` <occheckboxfield customfield='Variant.Specs.Approved' checked='Yes' unchecked='No'></occheckboxfield>```
+  - ``` <occheckboxfield customfield='Variant.Specs.Approved' label='Custom' checked='Yes' unchecked='No'></occheckboxfield>```
 - *Alternative Method in Storefront*
   - ``` <customcheckboxfield customfield='Variant.Specs.SpecName' checked='unchecked'></customcheckboxfield>``` 
 
@@ -147,7 +180,10 @@ A directive to create a ckeditor on the page and bind it to a model.
   - ng-model: This is the value you want to bind to.
 
 - Example usage
-  - ``` <textarea octextboxfield ng-model="Variant.Specs.AdditionalInformation.Value"></textarea> ```
+  ```html 
+  <label>Custom Label</label>
+  <textarea octextboxfield ng-model="Variant.Specs.SpecName.Value"></textarea> 
+  ```
 
 - Important Note: if you are using the octextboxfield, in the index file you need to add an extra script:
 ```

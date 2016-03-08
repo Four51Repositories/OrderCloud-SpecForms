@@ -2,9 +2,11 @@ angular.module('OrderCloud-SpecForms', []);
 
 angular.module('OrderCloud-SpecForms')
     .directive('ocmaskfield', ocmaskfield)
-    .directive('mask', ocmask)
+    .directive('jmask', ocmask)
     .directive('occasefield', occasefield)
+    .directive('octitlefield', octitlefield)
     .directive('octextfield', octextfield)
+    .directive('ocemailfield', ocemailfield)
     .directive('ocselectionfield', ocselectionfield)
     .directive('ocfilefield', ocfilefield)
     .directive('ocdatefield', ocdatefield)
@@ -20,6 +22,7 @@ function ocmaskfield() {
             changed: '=',
             hidesuffix: '@',
             hideprefix: '@',
+            label: '@',
             mask: '@'
         },
         restrict: 'E',
@@ -31,10 +34,10 @@ function ocmaskfield() {
         return [
             '<div class="view-form-icon" ng-class="{\'view-form-icon-input-group\':((customfield.Prefix && !hideprefix) || (customfield.Suffix && !hidesuffix))}">',
             '<div ng-if="customfield.Lines <= 1">',
-            '<label ng-class="{\'required\': customfield.Required}">{{customfield.Label || customfield.Name}}</label>',
+            '<label ng-class="{\'required\': customfield.Required}">{{label || customfield.Label || customfield.Name}}</label>',
             '<div ng-class="{\'input-group\':((customfield.Prefix && !hideprefix) || (customfield.Suffix && !hidesuffix))}">',
             '<span class="input-group-addon" ng-if="customfield.Prefix && !hideprefix && !((customfield.Prefix) == \'\')">{{customfield.Prefix}}</span>',
-            '<input class="form-control" size="{{customfield.Width * .13}}" ng-maxlength="{{customfield.MaxLength}}" mask="{{customfield.MaskedInput || mask}}" type="text" autocomplete="off" ng-required="{{customfield.Required}}" ng-model="customfield.Value">',
+            '<input class="form-control" size="{{customfield.Width * .13}}" ng-maxlength="{{customfield.MaxLength}}" jmask="{{customfield.MaskedInput || mask}}" type="text" autocomplete="off" ng-required="{{customfield.Required}}" ng-model="customfield.Value">',
             '<span class="input-group-addon" ng-if="customfield.Suffix && !hidesuffix && !((customfield.Suffix) == \'\')">{{customfield.Suffix}}</span>',
             '</div>',
             '</div>',
@@ -51,8 +54,8 @@ function ocmask() {
     return directive;
 
     function link(scope, elem, attr, ctrl) {
-        if (attr.mask)
-            elem.mask(attr.mask, { placeholder: attr.maskPlaceholder });
+        if (attr.jmask)
+            elem.mask(attr.jmask, { placeholder: attr.maskPlaceholder });
     }
 }
 
@@ -61,6 +64,8 @@ function occasefield() {
         scope: {
             customfield : '=',
             changed: '=',
+            label: '@',
+            placeholder: '@',
             hidesuffix: '@',
             hideprefix: '@',
             case: '@'
@@ -80,10 +85,73 @@ function occasefield() {
         return [
             '<div class="view-form-icon" ng-class="{\'view-form-icon-input-group\':((customfield.Prefix && !hideprefix) || (customfield.Suffix && !hidesuffix))}">',
             '<div>',
-            '<label ng-class="{\'required\': customfield.Required}">{{customfield.Label || customfield.Name}}</label>',
+            '<label ng-class="{\'required\': customfield.Required}">{{label || customfield.Label || customfield.Name}}</label>',
             '<div ng-class="{\'input-group\':((customfield.Prefix && !hideprefix) || (customfield.Suffix && !hidesuffix))}">',
             '<span class="input-group-addon" ng-if="customfield.Prefix && !hideprefix && !((customfield.Prefix) == \'\')">{{customfield.Prefix}}</span>',
-            '<input class="form-control" size="{{customfield.Width * .13}}" ng-maxlength="{{customfield.MaxLength}}" ui-mask="{{customfield.MaskedInput}}" type="text" autocomplete="off" ng-required="{{customfield.Required}}" ng-model="customfield.Value">',
+            '<input class="form-control" placeholder="{{placeholder || label || customfield.Label || customfield.Name}}" size="{{customfield.Width * .13}}" ng-maxlength="{{customfield.MaxLength}}" ui-mask="{{customfield.MaskedInput}}" type="text" autocomplete="off" ng-required="{{customfield.Required}}" ng-model="customfield.Value">',
+            '<span class="input-group-addon" ng-if="customfield.Suffix && !hidesuffix && !((customfield.Suffix) == \'\')">{{customfield.Suffix}}</span>',
+            '</div>',
+            '</div>',
+            '</div>'
+        ].join('');
+    }
+}
+
+function octitlefield() {
+    var directive = {
+        scope: {
+            customfield : '=',
+            changed: '=',
+            label: '@',
+            placeholder: '@',
+            hidesuffix: '@',
+            hideprefix: '@',
+            case: '@'
+        },
+        restrict: 'E',
+        template: template,
+        link: function (scope) {
+            String.prototype.toTitleCase = function() {
+              var i, j, str, lowers, uppers;
+              str = this.replace(/\b[\w-\']+/g, function(txt) {
+                return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+              });
+
+              // Certain minor words should be left lowercase unless 
+              // they are the first or last words in the string
+              lowers = ['A', 'An', 'The', 'And', 'But', 'Or', 'For', 'Nor', 'As', 'At', 
+              'By', 'For', 'From', 'In', 'Into', 'Near', 'Of', 'On', 'Onto', 'To', 'With'];
+              for (i = 0, j = lowers.length; i < j; i++)
+                str = str.replace(new RegExp('\\s' + lowers[i] + '\\s', 'g'), 
+                  function(txt) {
+                    return txt.toLowerCase();
+                  });
+
+              // Certain words such as initialisms or acronyms should be left uppercase
+              uppers = ['Id', 'Tv'];
+              for (i = 0, j = uppers.length; i < j; i++)
+                str = str.replace(new RegExp('\\b' + uppers[i] + '\\b', 'g'), 
+                  uppers[i].toUpperCase());
+
+              return str;
+            }
+
+            scope.$watch('customfield.Value', function(val) {
+                if (!val) return;
+                scope.customfield.Value =  val.toTitleCase();
+            });
+        }
+    };
+    return directive;
+
+    function template() {
+        return [
+            '<div class="view-form-icon" ng-class="{\'view-form-icon-input-group\':((customfield.Prefix && !hideprefix) || (customfield.Suffix && !hidesuffix))}">',
+            '<div>',
+            '<label ng-class="{\'required\': customfield.Required}">{{label || customfield.Label || customfield.Name}}</label>',
+            '<div ng-class="{\'input-group\':((customfield.Prefix && !hideprefix) || (customfield.Suffix && !hidesuffix))}">',
+            '<span class="input-group-addon" ng-if="customfield.Prefix && !hideprefix && !((customfield.Prefix) == \'\')">{{customfield.Prefix}}</span>',
+            '<input class="form-control" placeholder="{{placeholder || label || customfield.Label || customfield.Name}}" size="{{customfield.Width * .13}}" ng-maxlength="{{customfield.MaxLength}}" ui-mask="{{customfield.MaskedInput}}" type="text" autocomplete="off" ng-required="{{customfield.Required}}" ng-model="customfield.Value">',
             '<span class="input-group-addon" ng-if="customfield.Suffix && !hidesuffix && !((customfield.Suffix) == \'\')">{{customfield.Suffix}}</span>',
             '</div>',
             '</div>',
@@ -97,6 +165,8 @@ function octextfield() {
         scope: {
             customfield : '=',
             changed: '=',
+            label: '@',
+            placeholder: '@',
             hidesuffix: '@',
             hideprefix: '@'
         },
@@ -110,18 +180,50 @@ function octextfield() {
         return [
             '<div class="view-form-icon" ng-class="{\'view-form-icon-input-group\':((customfield.Prefix && !hideprefix) || (customfield.Suffix && !hidesuffix))}">',
             '<div ng-if="customfield.Lines <= 1">',
-            '<label ng-class="{\'required\': customfield.Required}">{{customfield.Label || customfield.Name}}</label>',
+            '<label ng-class="{\'required\': customfield.Required}">{{label || customfield.Label || customfield.Name}}</label>',
             '<div ng-class="{\'input-group\':((customfield.Prefix && !hideprefix) || (customfield.Suffix && !hidesuffix))}">',
             '<span class="input-group-addon" ng-if="customfield.Prefix && !hideprefix && !((customfield.Prefix) == \'\')">{{customfield.Prefix}}</span>',
-            '<input class="form-control" placeholder="{{customfield.Label || customfield.Name}}" size="{{customfield.Width * .13}}" ng-maxlength="{{customfield.MaxLength}}" mask="{{customfield.MaskedInput}}" type="text" autocomplete="off" ng-required="{{customfield.Required}}" ng-model="customfield.Value">',
+            '<input class="form-control" placeholder="{{placeholder || label || customfield.Label || customfield.Name}}" size="{{customfield.Width * .13}}" ng-maxlength="{{customfield.MaxLength}}" jmask="{{customfield.MaskedInput}}" type="text" autocomplete="off" ng-required="{{customfield.Required}}" ng-model="customfield.Value">',
             '<span class="input-group-addon" ng-if="customfield.Suffix && !hidesuffix && !((customfield.Suffix) == \'\')">{{customfield.Suffix}}</span>',
             '</div>',
             '</div>',
             '<div ng-if="customfield.Lines > 1">',
-            '<label ng-class="{\'required\': customfield.Required}">{{customfield.Label || customfield.Name}}</label>',
+            '<label ng-class="{\'required\': customfield.Required}">{{label || customfield.Label || customfield.Name}}</label>',
             '<div ng-class="{\'input-group\':((customfield.Prefix && !hideprefix) || (customfield.Suffix && !hidesuffix))}">',
             '<span class="input-group-addon" ng-if="customfield.Prefix && !hideprefix && !((customfield.Prefix) == \'\')">{{customfield.Prefix}}</span>',
-            '<textarea class="form-control"  ng-attr-placeholder="{{customfield.Label || customfield.Name}}" cols="{{customfield.Width * .13}}" rows="{{customfield.Lines}}" ng-maxlength="{{customfield.MaxLength}}" ng-required="{{customfield.Required}}" ng-model="customfield.Value"></textarea>',
+            '<textarea class="form-control"  ng-attr-placeholder="{{placeholder || label || customfield.Label || customfield.Name}}" cols="{{customfield.Width * .13}}" rows="{{customfield.Lines}}" ng-maxlength="{{customfield.MaxLength}}" ng-required="{{customfield.Required}}" ng-model="customfield.Value"></textarea>',
+            '<span class="input-group-addon" ng-if="customfield.Suffix && !hidesuffix && !((customfield.Suffix) == \'\')">{{customfield.Suffix}}</span>',
+            '</div>',
+            '</div>',
+            '</div>'
+        ].join('');
+    }
+}
+
+function ocemailfield() {
+    var directive = {
+        scope: {
+            customfield : '=',
+            changed: '=',
+            label: '@',
+            placeholder: '@',
+            hidesuffix: '@',
+            hideprefix: '@'
+        },
+        restrict: 'E',
+        transclude: true,
+        template: template
+    };
+    return directive;
+
+    function template() {
+        return [
+            '<div class="view-form-icon" ng-class="{\'view-form-icon-input-group\':((customfield.Prefix && !hideprefix) || (customfield.Suffix && !hidesuffix))}">',
+            '<div ng-if="customfield.Lines <= 1">',
+            '<label ng-class="{\'required\': customfield.Required}">{{label || customfield.Label || customfield.Name}}</label>',
+            '<div ng-class="{\'input-group\':((customfield.Prefix && !hideprefix) || (customfield.Suffix && !hidesuffix))}">',
+            '<span class="input-group-addon" ng-if="customfield.Prefix && !hideprefix && !((customfield.Prefix) == \'\')">{{customfield.Prefix}}</span>',
+            '<input class="form-control" placeholder="{{placeholder || label || customfield.Label || customfield.Name}}" size="{{customfield.Width * .13}}" ng-maxlength="{{customfield.MaxLength}}" jmask="{{customfield.MaskedInput}}" type="email" autocomplete="off" ng-required="{{customfield.Required}}" ng-model="customfield.Value">',
             '<span class="input-group-addon" ng-if="customfield.Suffix && !hidesuffix && !((customfield.Suffix) == \'\')">{{customfield.Suffix}}</span>',
             '</div>',
             '</div>',
@@ -136,6 +238,7 @@ function ocselectionfield($451) {
         scope: {
             customfield : '=',
             change: '=',
+            label: '@',
             hidesuffix: '@',
             hideprefix: '@'
         },
@@ -150,7 +253,7 @@ function ocselectionfield($451) {
         return [
             '<div class="view-form-icon" ng-class="{\'view-form-icon-input-group\':((customfield.Prefix && !hideprefix) || (customfield.Suffix && !hidesuffix))}">',
             '<div>',
-            '<label ng-class="{\'required\': customfield.Required}">{{customfield.Label || customfield.Name}}</label>',
+            '<label ng-class="{\'required\': customfield.Required}">{{label || customfield.Label || customfield.Name}}</label>',
             '<div ng-class="{\'input-group\':((customfield.Prefix && !hideprefix) || (customfield.Suffix && !hidesuffix))}">',
             '<span class="input-group-addon"  ng-if="customfield.Prefix && !hideprefix && !((customfield.Prefix) == \'\')">{{customfield.Prefix}}</span>',
             '<select class="form-control" ng-init="init()" ng-required="customfield.Required" ng-change="changed()" ng-model="item" ng-options="option.Value for option in customfield.Options" ng-if="customfield.Options">',
@@ -222,6 +325,7 @@ function ocfilefield($parse, $resource, $451, fileReader, Security) {
     var directive = {
         scope: {
             customfield: '=',
+            label: '@',
             replace: '@ngModel'
         },
         restrict: 'E',
@@ -236,7 +340,7 @@ function ocfilefield($parse, $resource, $451, fileReader, Security) {
             '<div class="view-form-icon">',
             '<div class="fileInput">',
             '<loadingindicator ng-show="uploadFileIndicator" title="Uploading"/>',
-            '<label ng-class="{\'required\': customfield.Required}">{{customfield.Label || customfield.Name}}</label>',
+            '<label ng-class="{\'required\': customfield.Required}">{{label || customfield.Label || customfield.Name}}</label>',
             '<img ng-show="customfield.File.IsImage && customfield.FileType == \'Image\'" ng-src="{{customfield.File.Url}}">',
             '<a ng-href="{{customfield.File.Url}}">{{customfield.File.OriginalName}}</a>',
             '<div ng-show="customfield.File">',
@@ -345,6 +449,7 @@ function ocdatefield($filter) {
     var directive = {
         scope: {
             customfield : '=',
+            label: '@',
             hidesuffix: '@',
             hideprefix: '@',
             format: '@'
@@ -367,7 +472,7 @@ function ocdatefield($filter) {
     function template() {
         return [
             '<div class="view-form-icon">',
-            '<label ng-class="{\'required\': customfield.Required}">{{customfield.Label || customfield.Name}}</label>',
+            '<label ng-class="{\'required\': customfield.Required}">{{label || customfield.Label || customfield.Name}}</label>',
             '<div ng-class="{\'input-group\':((customfield.Prefix && !hideprefix) || (customfield.Suffix && !hidesuffix))}">',
             '<span class="input-group-addon" ng-if="customfield.Prefix && !hideprefix && !((customfield.Prefix) == \'\')">{{customfield.Prefix}}</span>',
             '<input is-open="fieldopened" datepicker-popup="{{format}}" class="form-control" type="text" ng-required="customfield.Required" ng-model="customfield.Date"/>',
@@ -385,6 +490,7 @@ function octimefield($filter) {
     var directive = {
         scope: {
             customfield : '=',
+            label: '@',
             hidesuffix: '@',
             hideprefix: '@'
         },
@@ -414,7 +520,7 @@ function octimefield($filter) {
     function template() {
         return [
             '<div class="form-group">',
-            '<label class="small" ng-class="{\'required\': customfield.Required}">{{customfield.Label || customfield.Name}}</label>',
+            '<label class="small" ng-class="{\'required\': customfield.Required}">{{label || customfield.Label || customfield.Name}}</label>',
             '<div ng-class="{\'input-group\':((customfield.Prefix && !hideprefix) || (customfield.Suffix && !hidesuffix))}">',
             '<span class="input-group-addon" ng-if="customfield.Prefix && !hideprefix && !((customfield.Prefix) == \'\')">{{customfield.Prefix}}</span>',
             '<timepicker ng-model="customfield.Time" show-meridian="true"></timepicker>',
@@ -429,6 +535,7 @@ function occheckboxfield() {
     var directive = {
         scope: {
             customfield : '=',
+            label: '@',
             checked: '@',
             unchecked: '@'
         },
@@ -440,7 +547,7 @@ function occheckboxfield() {
     function template() {
         return [
             '<div class="checkbox">',
-            '<label ng-class="{\'required\': customfield.Required}">{{customfield.Label || customfield.Name}}',
+            '<label ng-class="{\'required\': customfield.Required}">{{label || customfield.Label || customfield.Name}}',
             '<input type="checkbox" ng-true-value="{{checked}}" ng-false-value="{{unchecked}}" ng-model="customfield.Value">',
             '</label>',
             '</div>',
@@ -455,30 +562,12 @@ function octextboxfield() {
         link: function(scope, elm, attr, ngModel) {
             /* Replace whatever element this directive is on with a ck-editor */
             var ck = CKEDITOR.replace(elm[0], {
-                removeButtons: 'Source'
+                removeButtons: 'Source,NumberedList,BulletedList,Outdent,Indent,Link,Unlink,Anchor'
                 /* remove or add any custom buttons as needed here */
             });
 
             /* Take no additional action if there is no ngModel value on the element */
             if(!ngModel) return;
-
-            scope.specName = attr.ngModel.split('.')[2];
-            scope.labelAdded = false;
-            scope.$watch('$parent.LineItem', function() {
-                if (scope.$parent.LineItem && scope.$parent.LineItem.Specs && scope.$parent.LineItem.Specs[scope.specName] && !scope.labelAdded) {
-                    scope.labelAdded = true;
-                    var label = scope.$parent.LineItem.Specs[scope.specName].Label ? scope.$parent.LineItem.Specs[scope.specName].Label : scope.$parent.LineItem.Specs[scope.specName].Name;
-                    $(elm[0]).before("<label style='top: -20px;font-size: 11px;display: block;'>" + label + "</label>");
-                }
-            }, true);
-
-            scope.$watch('Variant', function() {
-                if (scope.Variant && scope.Variant.Specs && scope.Variant.Specs[scope.specName] && !scope.labelAdded) {
-                    scope.labelAdded = true;
-                    var label = scope.Variant.Specs[scope.specName].Label ? scope.Variant.Specs[scope.specName].Label : scope.Variant.Specs[scope.specName].Name;
-                    $(elm[0]).before("<label style='top: -20px;font-size: 11px;display: block;'>" + (scope.Variant.Specs[scope.specName].Label || scope.Variant.Specs[scope.specName].Name) + "</label>");
-                }
-            }, true);
 
             /* Directive detects that text has been pasted in from the clipboard */
             ck.on('pasteState', function() {

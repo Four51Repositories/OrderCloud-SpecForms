@@ -1,6 +1,6 @@
 #Spec Form Directives for Four51 Storefront
 
-This is a repository of useful AngularJS directives for OrderCloud 2.0 including usage for spec forms and product detail templates. Similar directives are already included in the OrderCloud Storefront reference application and are annotated below where the alternative storefront method is available. 
+This is a repository of useful AngularJS directives for Four51 Storefront including usage for spec forms and product detail templates. Similar directives are already included in the Storefront reference application and are annotated below where the alternative storefront method is available. 
 
 ##Setup
 ###1. Add module file to your project.

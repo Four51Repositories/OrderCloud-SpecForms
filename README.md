@@ -1,5 +1,7 @@
 #Spec Form Directives for Four51 Storefront
 
+###As of version Four51 Storefront-1.5.0, this solution was added to the base app.  If you are using that version or newer you will not need to follow the Setup instructions.
+
 This is a repository of useful AngularJS directives for Four51 Storefront including usage for spec forms and product detail templates. Similar directives are already included in the Storefront reference application and are annotated below where the alternative storefront method is available. 
 
 ##Setup
